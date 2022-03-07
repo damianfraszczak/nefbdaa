@@ -136,8 +136,6 @@ namespace NEFBDAACommons.Database.Services
       AddEmptyConfigIfNotExists(CommonsConstants.CONFIG_EMAIL_PASSWORD);
       AddEmptyConfigIfNotExists(CommonsConstants.CONFIG_EMAIL_PORT);
       AddEmptyConfigIfNotExists(CommonsConstants.CONFIG_EMAIL_USER);
-      AddEmptyConfigIfNotExists(CommonsConstants.CONFIG_EMAIL_SENDGRID_API_KEY, ConfigEntityType.STRING, "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");
-      AddEmptyConfigIfNotExists(CommonsConstants.CONFIG_EMAIL_DEFAULT_FROM, ConfigEntityType.STRING, "noreply@dt.com");
       AddEmptyConfigIfNotExists(CommonsConstants.APP_NAME, ConfigEntityType.STRING, "App");
       AddEmptyConfigIfNotExists(CommonsConstants.USER_PASSWORD_RESET_TEMPLATE,
           ConfigEntityType.HTML,
