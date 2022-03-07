@@ -1,0 +1,19 @@
+.drop-zone {
+  border: dotted 3px lightgray;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.drop-zone:hover {
+  cursor: pointer;
+}
+
+.previewIcon {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

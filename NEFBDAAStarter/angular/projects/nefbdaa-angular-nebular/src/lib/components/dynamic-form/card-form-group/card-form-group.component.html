@@ -1,0 +1,43 @@
+<ng-container *ngFor="let fgModel of formModel.formConfig.formGroups ;">
+  <ng-container *ngIf="isFormGroupVisible(fgModel)">
+    <div [ngClass]="getFormGroupLayout(fgModel)">
+      <ng-container *ngFor="let formGroupModel of (fgModel.formGroups ? fgModel.formGroups :  [fgModel])">
+        <nb-card *ngIf="isFormGroupVisible(formGroupModel)" status="light"
+        >
+          <nb-card-header *ngIf="formGroupModel.name && formGroupModel.displayName && !formGroupModel.formGroupField">
+            {{formGroupModel.name}}
+            <ngx-dynamic-field (valueChanged)="valueChanged.emit($event)" *ngIf="formGroupModel.formGroupField"
+                               [fieldDefinition]="formGroupModel.formGroupField" [formGroup]="formGroup"
+                               [formMode]="formModel.formConfig.formMode"
+                               [object]="formModel.object" [printLabels]="formModel.formConfig.printLabels" [formConfig]="formModel.formConfig"
+            ></ngx-dynamic-field>
+          </nb-card-header>
+          <nb-card-header *ngIf="formGroupModel.formGroupField" class="group-header">
+            {{formGroupModel.formGroupField.placeholder}}
+            <ngx-dynamic-field (valueChanged)="valueChanged.emit($event)" *ngIf="formGroupModel.formGroupField"
+                               [allValuesChanged]="allValuesChanged" [fieldDefinition]="formGroupModel.formGroupField"
+                               [formGroup]="formGroup" [formMode]="formModel.formConfig.formMode"
+                               [object]="formModel.object" class="d-inline-block" printLabels="false" [formConfig]="formModel.formConfig"
+            ></ngx-dynamic-field>
+          </nb-card-header>
+          <nb-card-body *ngIf="isFormGroupFieldsVisibleBasedOnGroupField(formGroupModel)" class="row">
+            <ng-container *ngFor="let fieldDefinition of formGroupModel.editFields | orderBy: 'order' ;">
+              <div *ngIf="isFieldVisible(fieldDefinition)"
+                   [ngClass]="getLayoutClassFromComponent(fieldDefinition)">
+                <ngx-dynamic-field (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="allValuesChanged"
+                                   [fieldDefinition]="fieldDefinition"
+                                   [formGroup]="formGroup"
+                                   [formMode]="formModel.formConfig.formMode" [object]="formModel.object"
+                                   [printLabels]="formModel.formConfig.printLabels" [formConfig]="formModel.formConfig"
+                ></ngx-dynamic-field>
+              </div>
+            </ng-container>
+
+          </nb-card-body>
+        </nb-card>
+      </ng-container>
+
+
+    </div>
+  </ng-container>
+</ng-container>

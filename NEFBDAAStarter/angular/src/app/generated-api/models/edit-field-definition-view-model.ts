@@ -1,0 +1,43 @@
+/* tslint:disable */
+import { ComputedConfig } from './computed-config';
+import { FormLayout } from './form-layout';
+import { FilteredOptionsConfig } from './filtered-options-config';
+import { AddInlineConfig } from './add-inline-config';
+import { ISelectFieldOptionViewModel } from './iselect-field-option-view-model';
+import { FormValidator } from './form-validator';
+import { InputType } from './input-type';
+export interface EditFieldDefinitionViewModel {
+  visibilityExpression?: string;
+  computedOn?: ComputedConfig;
+  formLayout?: FormLayout;
+  optionsFilteredOn?: FilteredOptionsConfig;
+  addInlineConfig?: AddInlineConfig;
+  extraClassList?: Array<string>;
+  visibilityExpressionParams?: Array<string>;
+  options?: Array<ISelectFieldOptionViewModel>;
+  displayOnCreationForm?: boolean;
+  displayOnUpdateForm?: boolean;
+  validators?: Array<FormValidator>;
+  placeholder?: string;
+  tableTitle?: string;
+  helpText?: string;
+  groupName?: string;
+  parameterName?: string;
+  display?: boolean;
+  filterable?: boolean;
+  editable?: boolean;
+  editableOnCreateForm?: boolean;
+  editableOnEditForm?: boolean;
+  exportable?: boolean;
+  order?: number;
+  filterOrder?: number;
+  exportOrder?: number;
+  inputType?: InputType;
+  queryType?: string;
+  modelType?: string;
+  filterPropertyName?: string;
+  filterSelectMultiple?: boolean;
+  tableWidth?: string;
+  min?: string;
+  max?: string;
+}

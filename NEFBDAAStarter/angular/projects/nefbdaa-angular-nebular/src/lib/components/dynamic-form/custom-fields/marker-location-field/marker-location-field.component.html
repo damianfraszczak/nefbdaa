@@ -1,0 +1,21 @@
+<div class="map-container">
+  <agm-map
+    (mapDblClick)="value.lat = $event.coords.lat; value.lng = $event.coords.lng"
+    [latitude]="value.lat"
+    [zoom]="mapProp.zoom"
+    [mapTypeId]="mapProp.mapTypeId"
+    [mapTypeControl]="mapProp.mapTypeControl"
+    [streetViewControl]="mapProp.streetViewControl"
+    [fullscreenControl]="mapProp.fullscreenControl"
+    [scaleControl]="mapProp.scaleControl"
+    [longitude]="value.lng"
+
+
+  >
+    <agm-marker [latitude]="value?.lat" [longitude]="value?.lng"
+                [markerDraggable]="true"
+                (dragEnd)="dragEnd($event.coords)"
+    ></agm-marker>
+  </agm-map>
+
+</div>

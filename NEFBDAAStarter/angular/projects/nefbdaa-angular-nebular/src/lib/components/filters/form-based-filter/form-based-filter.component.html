@@ -1,0 +1,15 @@
+<ng-container *ngIf="filterModel">
+  <ngx-dynamic-form class="row" style="overflow-x: hidden" #ngxForm [formModel]="filterModel">
+    <!--<button nbButton hero status="danger" class="mr-2"-->
+    <!--(click)="clearFilter()">Clear filter-->
+    <!--</button>-->
+
+  </ngx-dynamic-form>
+  <div class="row">
+    <button (click)="ngxForm.updateModel();filter();" hero nbButton
+            status="success">Filter
+    </button>
+  </div>
+
+</ng-container>
+

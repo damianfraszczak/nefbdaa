@@ -1,0 +1,27 @@
+<nb-tabset>
+  <ng-container *ngFor="let formGroupModel of formModel.formConfig.formGroups">
+
+    <nb-tab [title]="formGroupModel.name" *ngIf="isFormGroupVisible(formGroupModel)">
+      <ngx-dynamic-field [fieldDefinition]="formGroupModel.formGroupField" [formGroup]="formGroup"
+                         (valueChanged)="valueChanged.emit($event)" [formMode]="formModel.formConfig.formMode"
+                         [object]="formModel.object" [allValuesChanged]="allValuesChanged"  [formConfig]="formModel.formConfig"
+                         [printLabels]="formModel.formConfig.printLabels" *ngIf="formGroupModel.formGroupField"
+      ></ngx-dynamic-field>
+      <ng-container *ngIf="isFormGroupFieldsVisibleBasedOnGroupField(formGroupModel)">
+        <ng-container *ngFor="let fieldDefinition of formGroupModel.editFields | orderBy: 'order' ;">
+          <div *ngIf="isFieldVisible(fieldDefinition)"
+               [ngClass]="getLayoutClassFromComponent(fieldDefinition)">
+            <ngx-dynamic-field [fieldDefinition]="fieldDefinition" [formGroup]="formGroup"
+                               [formConfig]="formModel.formConfig"
+                               [formMode]="formModel.formConfig.formMode"
+                               (valueChanged)="valueChanged.emit($event)"
+                               [object]="formModel.object" [allValuesChanged]="allValuesChanged"
+                               [printLabels]="formModel.formConfig.printLabels"
+            ></ngx-dynamic-field>
+          </div>
+        </ng-container>
+      </ng-container>
+
+    </nb-tab>
+  </ng-container>
+</nb-tabset>

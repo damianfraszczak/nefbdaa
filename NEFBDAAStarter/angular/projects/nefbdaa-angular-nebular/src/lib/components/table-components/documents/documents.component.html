@@ -1,0 +1,22 @@
+<nb-card [status]="cardStatus">
+  <nb-card-header *ngIf="title && showTitle">
+    {{title}}
+  </nb-card-header>
+  <nb-card-body *ngIf="tableConfig">
+    <div (filesChange)="uploadFiles()"
+         *ngIf="table?.dataSource?.count() < this.maxFilesCount" [(files)]="files" [accept]="acceptFileTypes"
+         [maxSize]="maxFileSize"
+         [nbSpinner]="uploadingFiles"
+         class="drop-zone"
+         multiple="1"
+         ngfDrop
+         selectable="1"
+    >
+      Drag or choose files to upload
+    </div>
+    <div *ngIf="table?.dataSource?.count() === this.maxFilesCount" class="drop-zone">
+      You cannot upload max files
+    </div>
+    <ngx-config-based-table-component #table [tableConfig]="tableConfig" (custom)="onCustomAction($event)"></ngx-config-based-table-component>
+  </nb-card-body>
+</nb-card>

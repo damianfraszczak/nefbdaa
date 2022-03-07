@@ -1,0 +1,63 @@
+<div class="row">
+  <div *ngIf="formTitle" class="col-md-12">
+    <nb-card status="light">
+      <nb-card-header>
+        {{formTitle}}
+      </nb-card-header>
+    </nb-card>
+  </div>
+  <ng-content select="[form-header]"></ng-content>
+  <form *ngIf="formModel && formModel.object" [formGroup]="form" autocomplete="off" #formElement>
+    <ng-content select="[form-inside-first]"></ng-content>
+    <ng-container [ngSwitch]="formModel.formConfig.formGroupLayoutComponent">
+      <ng-container *ngSwitchCase="'CARD'">
+        <ngx-card-form-group (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="valueChanged"
+                             [formGroupModels]="formModel.formConfig.formGroups" [formGroup]="form"
+                             [formModel]="formModel"
+        ></ngx-card-form-group>
+      </ng-container>
+      <ng-container *ngSwitchCase="'ACCORDION'">
+        <ngx-accordion-form-group (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="valueChanged"
+                                  [formGroupModels]="formModel.formConfig.formGroups" [formGroup]="form"
+                                  [formModel]="formModel"
+        ></ngx-accordion-form-group>
+      </ng-container>
+      <ng-container *ngSwitchCase="'TABS'">
+        <ngx-tabs-form-group (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="valueChanged"
+                             [formGroupModels]="formModel.formConfig.formGroups" [formGroup]="form"
+                             [formModel]="formModel"
+        ></ngx-tabs-form-group>
+      </ng-container>
+      <ng-container *ngSwitchCase="'FIELDSET'">
+        <ngx-fieldset-form-group (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="valueChanged"
+                                 [formGroupModels]="formModel.formConfig.formGroups" [formGroup]="form"
+                                 [formModel]="formModel"
+        ></ngx-fieldset-form-group>
+      </ng-container>
+      <ng-container *ngSwitchCase="'SIMPLE'">
+        <ngx-simple-form-group (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="valueChanged"
+                               [formGroupModels]="formModel.formConfig.formGroups" [formGroup]="form"
+                               [formModel]="formModel"
+        ></ngx-simple-form-group>
+      </ng-container>
+      <ng-container *ngSwitchCase="'NONE'">
+        <ngx-none-form-group (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="valueChanged"
+                             [formGroupModels]="formModel.formConfig.formGroups" [formGroup]="form"
+                             [formModel]="formModel"
+        ></ngx-none-form-group>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <ngx-card-form-group (valueChanged)="valueChanged.emit($event)" [allValuesChanged]="valueChanged"
+                             [formGroupModels]="formModel.formConfig.formGroups" [formGroup]="form"
+                             [formModel]="formModel"
+        ></ngx-card-form-group>
+      </ng-container>
+    </ng-container>
+    <ngx-form-errors *ngIf="displayGlobalErrors" [formRef]="formElement" [form]="form" >
+
+    </ngx-form-errors>
+    <ng-content select="[form-inside-last]"></ng-content>
+  </form>
+  <ng-content></ng-content>
+</div>
+

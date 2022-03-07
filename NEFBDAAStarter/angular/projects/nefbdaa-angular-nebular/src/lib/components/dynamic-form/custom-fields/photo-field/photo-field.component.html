@@ -1,0 +1,24 @@
+<div class="position-relative">
+  <i *ngIf="value" (click)="clear()" class="show-on-hover nb-close float-right m-1"></i>
+  <div class="show-on-hover-container"
+       draggable="true"
+       (dragenter)="dragging = true"
+       (dragend)="dragging = false"
+       (dragleave)="dragging = false"
+       (mouseleave)="dragging = false"
+       (mouseenter)="dragging = true"
+       ondragover="return false"
+       [class.showAllChildren]="this.dragging"
+       (drop)="handleDrop($event)"
+       (click)="input.click()">
+    <img [src]="value || './assets/images/no-image.png'" class="position-relative ">
+
+    <span class="show-on-hover">Click here or drag your image to upload</span>
+    <div class="show-on-hover show-on-hover-background">
+      <input #input hidden type="file" name="file" accept="image/*"
+             (change)="loadFile($event)"
+             (click)="input.value = null">
+    </div>
+  </div>
+</div>
+

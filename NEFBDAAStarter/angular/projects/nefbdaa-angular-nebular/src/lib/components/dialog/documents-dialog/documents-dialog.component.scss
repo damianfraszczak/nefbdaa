@@ -1,0 +1,21 @@
+nb-card {
+  min-width: 700px;
+  max-width: 1000px;
+}
+
+:host ::ng-deep ng2-smart-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  text-transform: uppercase;
+}

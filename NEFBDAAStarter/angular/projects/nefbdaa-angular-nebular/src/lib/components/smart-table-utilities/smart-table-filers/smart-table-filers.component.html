@@ -1,0 +1,51 @@
+<div class="ng2-smart-filter" *ngIf="column.isFilterable">
+  <label class="control-label">{{column.getFilterConfig().selectText}}</label>
+  <ng-container [ngSwitch]="column.getFilterType()">
+    <ngx-range-date-filter *ngSwitchCase="'date'"
+                     [query]="query"
+                     [column]="column"
+
+                     [inputClass]="inputClass"
+                     (filter)="onFilter($event)">
+    </ngx-range-date-filter>
+    <ngx-date-time-filter *ngSwitchCase="'dateTime'"
+                          [query]="query"
+                          [column]="column"
+
+                          [inputClass]="inputClass"
+                          (filter)="onFilter($event)">
+    </ngx-date-time-filter>
+    <ngx-time-filter *ngSwitchCase="'time'"
+                     [query]="query"
+                     [column]="column"
+                     [inputClass]="inputClass"
+                     (filter)="onFilter($event)">
+
+    </ngx-time-filter>
+    <ngx-observable-select-filter (filter)="onFilter($event)"
+                                  *ngSwitchCase="'observable-select-list'"
+                                  [column]="column"
+
+                                  [inputClass]="inputClass"
+                                  [query]="query">
+
+    </ngx-observable-select-filter>
+    <ngx-checkbox-filter (filter)="onFilter($event)"
+                         *ngSwitchCase="'checkbox'"
+                         [column]="column"
+
+                         [inputClass]="inputClass"
+                         [query]="query">>
+
+    </ngx-checkbox-filter>
+    <default-table-filter *ngSwitchDefault
+                          [query]="query"
+                          [column]="column"
+                          [source]="source"
+                          [inputClass]="inputClass"
+                          (filter)="onFilter($event)">
+    </default-table-filter>
+  </ng-container>
+
+
+</div>

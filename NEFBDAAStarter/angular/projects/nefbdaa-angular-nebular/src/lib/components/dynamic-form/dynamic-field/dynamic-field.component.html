@@ -1,0 +1,205 @@
+<div [formGroup]="formGroup" class="form-group">
+  <label *ngIf="hasLabel(fieldDefinition) && printLabels" [class.required-label]="isRequired(fieldDefinition)"
+         [for]="fieldDefinition.parameterName">{{fieldDefinition.placeholder}}</label>
+
+  <!--normal input-->
+  <input #input (blur)="checkValue(fieldDefinition.parameterName, input.value)"
+         *ngIf="isNormalInput(fieldDefinition)"
+         [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+         [formControlName]="fieldDefinition.parameterName"
+         [id]="fieldDefinition.parameterName"
+         [readOnly]="isReadonly(fieldDefinition)" [required]="isRequired(fieldDefinition)"
+         [type]="getNormalInputType(fieldDefinition)" autocomplete="off" class="form-control" fieldSize="large"
+         [ngClass]="fieldDefinition.extraClassList"
+
+         fullWidth
+         nbInput
+         placeholder="{{fieldDefinition.placeholder}}"
+  >
+  <ng-container *ngIf="isDate(fieldDefinition)">
+    <owl-date-time #dp [pickerType]="'calendar'"></owl-date-time>
+    <input #dateInput
+           [owlDateTimeFilter]="getDateFilter(fieldDefinition)"
+           (blur)="checkValue(fieldDefinition.parameterName, dateInput.value)"
+           [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+           [formControlName]="fieldDefinition.parameterName" [id]="fieldDefinition.parameterName"
+           [owlDateTimeTrigger]="dp"
+           [owlDateTime]="dp"
+           [required]="isRequired(fieldDefinition)"
+           autocomplete="off"
+           class="form-control" fieldSize="large" fullWidth nbInput
+           placeholder="{{fieldDefinition.placeholder}}"
+           [ngClass]="fieldDefinition.extraClassList"
+    >
+  </ng-container>
+  <ng-container *ngIf="isTime(fieldDefinition)">
+    <owl-date-time #tp [pickerType]="'timer'"></owl-date-time>
+    <input #timeInput
+           (blur)="checkValue(fieldDefinition.parameterName, timeInput.value)"
+
+           [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+           [formControlName]="fieldDefinition.parameterName" [id]="fieldDefinition.parameterName"
+           [owlDateTimeTrigger]="tp"
+           [owlDateTime]="tp"
+           [required]="isRequired(fieldDefinition)"
+           autocomplete="off"
+           class="form-control" fieldSize="large" fullWidth nbInput
+           placeholder="{{fieldDefinition.placeholder}}"
+           [ngClass]="fieldDefinition.extraClassList"
+    >
+  </ng-container>
+  <ng-container *ngIf="isDateTime(fieldDefinition)">
+    <owl-date-time #dtp></owl-date-time>
+    <input #dateTimeInput
+           (blur)="checkValue(fieldDefinition.parameterName, dateTimeInput.value)"
+           [owlDateTimeFilter]="getDateFilter(fieldDefinition)"
+           [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+           [formControlName]="fieldDefinition.parameterName" [id]="fieldDefinition.parameterName"
+           [owlDateTimeTrigger]="dtp"
+           [owlDateTime]="dtp"
+           [required]="isRequired(fieldDefinition)"
+           autocomplete="off"
+           class="form-control" fieldSize="large" fullWidth nbInput
+           placeholder="{{fieldDefinition.placeholder}}"
+           [ngClass]="fieldDefinition.extraClassList"
+    >
+  </ng-container>
+
+
+  <!--boolean-->
+  <nb-checkbox #checkInput (blur)="checkValue(fieldDefinition.parameterName, checkInput)"
+               (checkedChange)="checkValue(fieldDefinition.parameterName, $event)"
+               *ngIf="isBoolean(fieldDefinition)"
+               [formControlName]="fieldDefinition.parameterName" [id]="fieldDefinition.parameterName"
+               [ngClass]="fieldDefinition.extraClassList"
+  >
+    <ng-container *ngIf="printLabels === true">
+      {{fieldDefinition.placeholder}}
+    </ng-container>
+  </nb-checkbox>
+  <div *ngIf="isBooleanAsSelect(fieldDefinition)" class="input-group">
+    <ng-select #select
+               (change)="checkValue(fieldDefinition.parameterName, select.selectedValues)"
+               [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+               [formControlName]="fieldDefinition.parameterName" [id]="fieldDefinition.parameterName"
+               [required]="isRequired(fieldDefinition)"
+               [dropdownPosition]="'auto'"
+               appendTo="body"
+               placeholder="{{fieldDefinition.placeholder}}"
+               [ngClass]="fieldDefinition.extraClassList"
+               [disabled]="isReadonly(fieldDefinition)"
+    >
+      <ng-option *ngIf="!isRequired(fieldDefinition)" value="">- Select {{fieldDefinition.placeholder}} -</ng-option>
+      <ng-option value="true">Yes</ng-option>
+      <ng-option value="false">No</ng-option>
+    </ng-select>
+    <div class="input-group-append" *ngIf="canBeAdded()">
+      <button (click)="addReferencedItem(select)" class="btn btn-xs btn-outline-secondary" type="button">Add</button>
+      <!--      <button (click)="editReferencedItem(select)" class="btn btn-xs btn-outline-secondary" type="button">Edit</button>-->
+    </div>
+  </div>
+
+  <!--textarea-->
+  <textarea #textAreaInput (blur)="checkValue(fieldDefinition.parameterName, textAreaInput.value)"
+            *ngIf="isTextArea(fieldDefinition)"
+            [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+            [formControlName]="fieldDefinition.parameterName"
+            [id]="fieldDefinition.parameterName"
+            [required]="isRequired(fieldDefinition)" autocomplete="off" cdkTextareaAutosize
+            class="form-control" fieldSize="large" fullWidth nbInput
+            placeholder="{{fieldDefinition.placeholder}}"
+            [ngClass]="fieldDefinition.extraClassList"
+
+  ></textarea>
+
+  <ckeditor (ngModelChange)="valueChanged.emit({name:fieldDefinition.parameterName, newVal: $event })"
+            *ngIf="isHtml(fieldDefinition)"
+            [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+            [config]="{ extraPlugins: 'divarea'}"
+            [formControlName]="fieldDefinition.parameterName" [id]="fieldDefinition.parameterName"
+            [required]="isRequired(fieldDefinition)"
+            [ngClass]="fieldDefinition.extraClassList"
+
+  ></ckeditor>
+  <!--select-->
+  <div *ngIf="isSelect(fieldDefinition)" class="input-group">
+    <ng-select #select
+               (change)="checkValue(fieldDefinition.parameterName, select.selectedValues)"
+               [loading]="dropdownLoading"
+               [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+               [formControlName]="fieldDefinition.parameterName" [id]="fieldDefinition.parameterName"
+               [multiple]="isMultipleSelect(fieldDefinition)"
+               [required]="isRequired(fieldDefinition)"
+               [dropdownPosition]="'auto'"
+               appendTo="body"
+               bindLabel="optionText"
+               bindValue="optionId"
+               placeholder="{{fieldDefinition.placeholder}}"
+               [ngClass]="fieldDefinition.extraClassList"
+               [disabled]="isReadonly(fieldDefinition)"
+    >
+      <ng-option *ngIf="!isRequired(fieldDefinition)" value="">- Select {{fieldDefinition.placeholder}} -</ng-option>
+      <ng-option *ngFor="let option of selectDataSource$ | async"
+                 [value]="option.optionId">{{option.optionText}}</ng-option>
+    </ng-select>
+    <div class="input-group-append" *ngIf="canBeAdded()">
+      <button (click)="addReferencedItem(select)" class="btn btn-xs btn-outline-secondary" type="button">Add</button>
+      <!--      <button (click)="editReferencedItem(select)" class="btn btn-xs btn-outline-secondary" type="button">Edit</button>-->
+    </div>
+  </div>
+
+
+  <!--radio-->
+  <nb-radio-group (valueChange)="checkValue(fieldDefinition.parameterName, $event)"
+                  *ngIf="isRadio(fieldDefinition)"
+                  [class.form-control-danger]="getErrorMessage(formGroup.get(fieldDefinition.parameterName))"
+                  [formControlName]="fieldDefinition.parameterName"
+                  [id]="fieldDefinition.parameterName"
+                  [required]="isRequired(fieldDefinition)"
+                  [ngClass]="fieldDefinition.extraClassList"
+                  [disabled]="isReadonly(fieldDefinition)"
+  >
+    <nb-radio *ngIf="!isRequired(fieldDefinition)">--</nb-radio>
+    <nb-radio *ngFor="let option of fieldDefinition.options"
+              [value]="option.optionId">{{option.optionText}}</nb-radio>
+  </nb-radio-group>
+
+  <dual-list
+    *ngIf="isDualBox(fieldDefinition)"
+    [key]="'optionId'" [source]="fieldDefinition.options"
+    [ngClass]="fieldDefinition.extraClassList"
+  ></dual-list>
+
+  <ngx-marker-location-field *ngIf="isMap(fieldDefinition)"
+                             [formControlName]="fieldDefinition.parameterName"
+                             [id]="fieldDefinition.parameterName"
+                             [ngClass]="fieldDefinition.extraClassList"
+
+  >
+  </ngx-marker-location-field>
+  <ngx-file-input #fileInput (blur)="checkValue(fieldDefinition.parameterName, fileInput.value)"
+                  *ngIf="isFile(fieldDefinition)"
+                  [formControlName]="fieldDefinition.parameterName"
+                  [id]="fieldDefinition.parameterName"
+                  [owner]="object"
+                  [type]="fieldDefinition.parameterName"
+                  [ngClass]="fieldDefinition.extraClassList"
+  >
+  </ngx-file-input>
+  <ngx-photo-field #fileInput (blur)="checkValue(fieldDefinition.parameterName, fileInput.value)"
+                   *ngIf="isImage(fieldDefinition)"
+                   [formControlName]="fieldDefinition.parameterName"
+                   [id]="fieldDefinition.parameterName"
+                   [ngClass]="fieldDefinition.extraClassList"
+
+  >
+  </ngx-photo-field>
+  <small class="form-text text-muted" *ngIf="fieldDefinition.helpText">
+    {{fieldDefinition.helpText}}
+  </small>
+  <p
+    *ngIf="getErrorMessage(formGroup.get(fieldDefinition.parameterName)) &&  (formGroup.get(fieldDefinition.parameterName).dirty || formGroup.get(fieldDefinition.parameterName).touched)"
+    class="error-message">
+    {{getErrorMessage(formGroup.get(fieldDefinition.parameterName))}}
+  </p>
+</div>

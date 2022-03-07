@@ -1,0 +1,48 @@
+<nb-accordion class="mt-1 mb-1">
+  <nb-accordion-item>
+    <nb-accordion-item-header class="bg-info">Filters</nb-accordion-item-header>
+    <nb-accordion-item-body *ngIf="filterConfig">
+      <query-builder
+        [(ngModel)]="filterQuery" [allowRuleset]="allowRuleset" [classNames]="filterClassNames" [config]="filterConfig">
+        <ng-container
+          *queryButtonGroup="let ruleset; let addRule=addRule; let addRuleSet=addRuleSet; let removeRuleSet=removeRuleSet">
+          <div class="buttons-row">
+            <button (click)="addRule()" hero nbButton status="primary" type="button">+ Condition</button>
+            <button (click)="filter()" hero nbButton status="success" type="button">Filter</button>
+            <button (click)="clearFilters()" hero nbButton status="danger" type="button">Clear</button>
+          </div>
+        </ng-container>
+        <ng-container *queryInput="let rule; type: 'dateTime'">
+          <div class="q-control-size">
+            <owl-date-time #dtp></owl-date-time>
+            <input
+              [(ngModel)]="rule.value" [owlDateTimeTrigger]="dtp"
+              [owlDateTime]="dtp"
+              autocomplete="off"
+              class="q-input-control form-control">
+          </div>
+        </ng-container>
+        <ng-container *queryInput="let rule; type: 'date'">
+          <div class="q-control-size">
+            <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+            <input
+              [(ngModel)]="rule.value" [owlDateTimeTrigger]="dt"
+              [owlDateTime]="dt"
+              autocomplete="off"
+              class="q-input-control form-control">
+          </div>
+        </ng-container>
+        <ng-container *queryInput="let rule; type: 'time'">
+          <div class="q-control-size">
+            <owl-date-time #dtt [pickerType]="'timer'"></owl-date-time>
+            <input
+              [(ngModel)]="rule.value" [owlDateTimeTrigger]="dtt"
+              [owlDateTime]="dtt"
+              autocomplete="off"
+              class="q-input-control form-control">
+          </div>
+        </ng-container>
+      </query-builder>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>

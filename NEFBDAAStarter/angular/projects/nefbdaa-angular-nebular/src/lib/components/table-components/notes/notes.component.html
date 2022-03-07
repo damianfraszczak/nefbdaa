@@ -1,0 +1,9 @@
+<nb-card [status]="cardStatus">
+  <nb-card-header *ngIf="title && showTitle">
+    {{title}}
+  </nb-card-header>
+  <nb-card-body *ngIf="tableConfig">
+    <ngx-config-based-table-component [tableConfig]="tableConfig"></ngx-config-based-table-component>
+
+  </nb-card-body>
+</nb-card>

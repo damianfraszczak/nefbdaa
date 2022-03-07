@@ -1,0 +1,106 @@
+<div
+  *ngIf="(settings.showBulkUpdate && 'multi' === settings.selectMode && table.source.provider?.bulkUpdater) || (settings.extraToolbarActions?.search && table.source.config)"
+  class="accordion-actions">
+  <nb-accordion>
+    <nb-accordion-item
+      *ngIf="settings.showBulkUpdate && 'multi' === settings.selectMode && table.source.provider?.bulkUpdater">
+      <nb-accordion-item-header (click)="loadFormModel()" class="bulk-update">Bulk update</nb-accordion-item-header>
+      <nb-accordion-item-body *ngIf="bulkUpdateModel">
+        <ngx-dynamic-form #ngxForm [formModel]="bulkUpdateModel">
+          <button (click)="ngxForm.updateModel();bulkUpdate();" class="btn btn-success"
+                  nbButton>Bulk update
+          </button>
+        </ngx-dynamic-form>
+
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+    <nb-accordion-item *ngIf="settings.extraToolbarActions?.search && table.source.config">
+      <nb-accordion-item-header (click)="loadFormModel()" class="form-filter">Filter</nb-accordion-item-header>
+      <nb-accordion-item-body *ngIf="filterModel">
+        <ngx-form-based-filter (filterEvent)="executeQuery($event);" [formModel]="filterModel">
+        </ngx-form-based-filter>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+
+</div>
+
+<nb-actions *ngIf="settings.extraToolbarActionsInOppositeDirection"
+            [class]="settings.actions?.position === 'right' ? 'float-left': 'float-right' " size="small">
+  <nb-action (click)="custom.emit({action: action.name})"
+             *ngFor="let action of settings.extraToolbarActionsInOppositeDirection"
+             title="{{action.title}}"
+             icon="{{action.icon}}"></nb-action>
+</nb-actions>
+
+
+<nb-actions [class]="settings.actions?.position === 'right' ? 'float-right': 'float-left' " size="small">
+  <nb-action (click)="toggleFilters()" *ngIf="settings.extraToolbarActions?.search && !table.source.config"
+             icon="search-outline"
+             title="Search"></nb-action>
+  <nb-action (click)="table.source.refresh()" icon="refresh-outline"
+             title="Refresh"></nb-action>
+
+  <nb-action (click)="showSelectedRows()" *ngIf="'multi' === settings.selectMode" icon="folder-outline"
+             title="Show selected rows"></nb-action>
+
+  <nb-action (click)="toggleCreationForm()" *ngIf="settings.extraToolbarActions?.add" icon="plus-outline"
+             title="Add"></nb-action>
+  <nb-action icon="trash-outline"
+             title="Bulk delete" (click)="bulkDelete();"
+             *ngIf="this.table.source.provider?.bulkRemover && 'multi' === settings.selectMode && settings.deleteButtonEnabled"></nb-action>
+
+  <nb-action (click)="custom.emit({action: action.name})" *ngFor="let action of settings.customExtraActions"
+             title="{{action.title}}"
+             icon="{{action.icon}}"></nb-action>
+  <nb-action (click)="exportData()" *ngIf="this.table.source.provider?.exporter"
+             icon="arrow-circle-down-outline"
+             title="Export">
+
+  </nb-action>
+
+</nb-actions>
+
+
+<!-- TODO not used at this moment-->
+<div *ngIf="settings.showFilters && this.table.source.query && this.table.source.config" class="table-filters">
+  <query-builder
+    [config]="table.source.config" [(ngModel)]="this.table.source.query">
+    <ng-container *queryInput="let rule; type: 'dateTime'">
+      <div class="q-control-size">
+        <owl-date-time #dtp></owl-date-time>
+        <input
+          [owlDateTimeTrigger]="dtp" [owlDateTime]="dtp"
+          autocomplete="off"
+          class="q-input-control"
+          [(ngModel)]="rule.value">
+      </div>
+    </ng-container>
+    <ng-container *queryInput="let rule; type: 'date'">
+      <div class="q-control-size">
+        <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+        <input
+          [owlDateTimeTrigger]="dt" [owlDateTime]="dt"
+          autocomplete="off"
+          class="q-input-control"
+          [(ngModel)]="rule.value">
+      </div>
+
+    </ng-container>
+
+  </query-builder>
+</div>
+
+<div *ngIf="settings.showFilters && filtersVisible" class="table-filters row">
+
+  <ng-container *ngFor="let column of getFilterColumns()">
+
+    <ngx-table-filers (filter)="table.filter($event)"
+                      *ngIf="column.isFilterable"
+                      [column]="column"
+                      [inputClass]="settings.filter?.inputClass" [source]="table.source"
+                      class="col-md-3">
+    </ngx-table-filers>
+  </ng-container>
+</div>
+

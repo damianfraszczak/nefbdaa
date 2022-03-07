@@ -1,0 +1,86 @@
+img {
+
+  border-radius: 2px;
+  max-height: 10rem;
+  width: auto;
+  display: block;
+  margin: auto;
+}
+
+i {
+  color: #ffffff;
+  font-size: 1.75rem;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #00000088;
+  border-radius: 8px;
+}
+
+i:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+span {
+  color: #ffffff;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+}
+
+.position-relative:hover > * {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+
+.show-on-hover-container {
+  position: relative;
+  max-width: var(--max-image-width);
+  max-height: var(--max-image-height);
+  min-height: 3rem;
+}
+
+.showAllChildren > * {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+
+.show-on-hover-container > * {
+  pointer-events: none;
+}
+
+.show-on-hover-container > div {
+  border-radius: 2px;
+}
+
+.show-on-hover {
+  position: absolute;
+  //visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  -moz-transition: opacity 0.3s ease-in;
+  -o-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.show-on-hover-background {
+  background-color: #0f0f0f88;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

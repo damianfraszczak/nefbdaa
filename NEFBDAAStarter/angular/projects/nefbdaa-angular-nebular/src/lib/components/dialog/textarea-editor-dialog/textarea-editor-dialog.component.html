@@ -1,0 +1,21 @@
+<nb-card [accent]="dialogContent.status || 'primary'">
+  <nb-card-header>{{dialogContent.header}}</nb-card-header>
+  <nb-card-body>
+    <nb-alert *ngIf="dialogContent.message"
+              >{{dialogContent.message}}</nb-alert>
+    <form name="contentForm">
+      <label *ngIf="dialogContent.label" class="sr-only" for="contentTextArea">{{dialogContent.label}}</label>
+      <textarea [(ngModel)]="dialogContent.input" class="form-control" id="contentTextArea" name="contentTextArea"
+                rows="10"
+                cols="60"></textarea>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="float-right">
+      <button (click)="dismiss()" class=" mr-2" hero nbButton
+              status="basic">{{dialogContent.cancelButtonText || 'Cancel'}}</button>
+      <button (click)="proceed()" [status]="dialogContent.status || 'success'" hero
+              nbButton>{{dialogContent.okButtonText || 'Save'}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

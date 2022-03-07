@@ -1,0 +1,27 @@
+<ng-container *ngFor="let formGroupModel of formModel.formConfig.formGroups ;">
+  <div *ngIf="isFormGroupVisible(formGroupModel)" [ngClass]="getFormGroupLayout(formGroupModel)">
+    <h2 *ngIf="formGroupModel.name &&  formGroupModel.displayName && !formGroupModel.formGroupField">
+      {{formGroupModel.name}}
+    </h2>
+    <div *ngIf="formGroupModel.formGroupField && isFieldVisible(formGroupModel.formGroupField)"
+         [ngClass]="getFieldLayout(formGroupModel.formGroupField,formGroupModel)">
+      <ngx-dynamic-field (valueChanged)="valueChanged.emit($event)" [fieldDefinition]="formGroupModel.formGroupField"
+                         [formGroup]="formGroup" [formMode]="formModel.formConfig.formMode"
+                         [object]="formModel.object" [allValuesChanged]="allValuesChanged"
+                         [printLabels]="formModel.formConfig.printLabels"  [formConfig]="formModel.formConfig"
+      ></ngx-dynamic-field>
+    </div>
+    <div *ngIf="isFormGroupFieldsVisibleBasedOnGroupField(formGroupModel)" class="row">
+      <ng-container *ngFor="let fieldDefinition of formGroupModel.editFields | orderBy: 'order' ;">
+        <div *ngIf="isFieldVisible(fieldDefinition)"
+             [ngClass]="getLayoutClassFromComponent(fieldDefinition)">
+          <ngx-dynamic-field (valueChanged)="valueChanged.emit($event)" [fieldDefinition]="fieldDefinition"
+                             [formGroup]="formGroup" [formMode]="formModel.formConfig.formMode"
+                             [object]="formModel.object" [allValuesChanged]="allValuesChanged"
+                             [printLabels]="formModel.formConfig.printLabels"  [formConfig]="formModel.formConfig"
+          ></ngx-dynamic-field>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

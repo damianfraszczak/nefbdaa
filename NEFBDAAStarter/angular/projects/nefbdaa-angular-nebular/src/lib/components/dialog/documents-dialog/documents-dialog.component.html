@@ -1,0 +1,38 @@
+<!--<nb-card>-->
+<!--  <nb-card-header>{{dialogContent.header}}</nb-card-header>-->
+<!--  <nb-card-body>-->
+<!--    <nb-card-body>-->
+<!--      <nb-alert *ngIf="dialogContent.message"-->
+<!--                [status]="dialogContent.status || 'primary'">{{dialogContent.message}}</nb-alert>-->
+<!--      <div class="drop-zone"-->
+<!--           ngfDrop selectable="1" multiple="1"-->
+<!--           [(files)]="files"-->
+<!--           (filesChange)="uploadFiles()"-->
+<!--           [nbSpinner]="uploadingFiles"-->
+<!--           *ngIf="dataSource.count() < this.maxFilesCount"-->
+<!--           [accept]="acceptFileTypes"-->
+<!--           [maxSize]="maxFileSize"-->
+<!--      >-->
+<!--        Drag or choose files to upload-->
+<!--      </div>-->
+<!--      <div class="drop-zone" *ngIf="dataSource.count() === this.maxFilesCount">-->
+<!--        You cannot upload max files-->
+<!--      </div>-->
+<!--      <perfect-scrollbar class="scroll-container">-->
+<!--        <ng2-smart-table #table-->
+<!--                         [settings]="tableSettings"-->
+<!--                         [source]="dataSource"-->
+<!--                         class="table-responsive"-->
+<!--        >-->
+<!--        </ng2-smart-table>-->
+
+<!--      </perfect-scrollbar>-->
+
+<!--    </nb-card-body>-->
+<!--  </nb-card-body>-->
+<!--  <nb-card-footer>-->
+<!--    <div class="float-right">-->
+<!--      <button (click)="dismiss()" [status]="'secondary'" class="mr-2" hero nbButton>Close</button>-->
+<!--    </div>-->
+<!--  </nb-card-footer>-->
+<!--</nb-card>-->

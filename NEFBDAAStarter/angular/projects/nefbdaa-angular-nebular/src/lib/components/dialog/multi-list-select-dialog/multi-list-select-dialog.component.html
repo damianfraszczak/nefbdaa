@@ -1,0 +1,32 @@
+
+<nb-card [accent]="dialogContent.status || 'primary'">
+  <nb-card-header>{{dialogContent.header}}</nb-card-header>
+  <nb-card-body>
+    <nb-card-body>
+      <nb-alert *ngIf="dialogContent.message">
+        {{dialogContent.message}}
+      </nb-alert>
+      <perfect-scrollbar class="scroll-container">
+        <nb-list>
+          <nb-list-item *ngFor="let item of dialogContent.items" (click)="toogleSelection(item)"
+                        [class.selected]="isSelected(item)"
+          >
+            <nb-user [name]="getName(item)" [title]="getTitle(item)" [showTitle]="dialogContent.showTitle || true"
+                     [showName]="dialogContent.showName || true"
+            >
+            </nb-user>
+          </nb-list-item>
+        </nb-list>
+      </perfect-scrollbar>
+
+    </nb-card-body>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="float-right">
+      <button (click)="dismiss()" class=" mr-2" hero nbButton
+              status="basic">{{dialogContent.cancelButtonText || 'Cancel'}}</button>
+      <button (click)="proceed()" [status]="dialogContent.status || 'success'" hero
+              nbButton [disabled]="dialogContent.selected">{{dialogContent.okButtonText || 'Confirm'}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

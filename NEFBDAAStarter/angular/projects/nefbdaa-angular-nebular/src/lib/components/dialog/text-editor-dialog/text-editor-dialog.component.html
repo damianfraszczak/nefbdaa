@@ -1,0 +1,17 @@
+<nb-card [accent]="dialogContent.status || 'primary'">
+  <nb-card-header>{{dialogContent.header}}</nb-card-header>
+  <nb-card-body>
+    <nb-alert *ngIf="dialogContent.message"
+              >{{dialogContent.message}}</nb-alert>
+    <ckeditor [(ngModel)]="dialogContent.input"
+              [config]="{ extraPlugins: 'divarea', height: '320', width: '720'}"></ckeditor>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="float-right">
+      <button (click)="dismiss()" class=" mr-2" hero nbButton
+              status="basic">{{dialogContent.cancelButtonText || 'Cancel'}}</button>
+      <button (click)="proceed()" [status]="dialogContent.status || 'success'" hero
+              nbButton>{{dialogContent.okButtonText || 'Save'}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

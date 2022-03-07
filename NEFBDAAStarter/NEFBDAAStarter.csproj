@@ -1,0 +1,127 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	<LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="angular\dist\**" />
+    <Compile Remove="angular\src\app\%2540theme\**" />
+    <Compile Remove="angular\src\app\%40theme\components\dialog\**" />
+    <Compile Remove="angular\src\app\%40theme\components\dynamic-form\**" />
+    <Compile Remove="angular\src\app\%40theme\components\smart-table-actions\**" />
+    <Compile Remove="angular\src\app\%40theme\components\smart-table\**" />
+    <Compile Remove="angular\src\app\%40theme\directives\**" />
+    <Compile Remove="angular\src\app\%40theme\models\**" />
+    <Content Remove="angular\dist\**" />
+    <Content Remove="angular\src\app\%2540theme\**" />
+    <Content Remove="angular\src\app\%40theme\components\dialog\**" />
+    <Content Remove="angular\src\app\%40theme\components\dynamic-form\**" />
+    <Content Remove="angular\src\app\%40theme\components\smart-table-actions\**" />
+    <Content Remove="angular\src\app\%40theme\components\smart-table\**" />
+    <Content Remove="angular\src\app\%40theme\directives\**" />
+    <Content Remove="angular\src\app\%40theme\models\**" />
+    <EmbeddedResource Remove="angular\dist\**" />
+    <EmbeddedResource Remove="angular\src\app\%2540theme\**" />
+    <EmbeddedResource Remove="angular\src\app\%40theme\components\dialog\**" />
+    <EmbeddedResource Remove="angular\src\app\%40theme\components\dynamic-form\**" />
+    <EmbeddedResource Remove="angular\src\app\%40theme\components\smart-table-actions\**" />
+    <EmbeddedResource Remove="angular\src\app\%40theme\components\smart-table\**" />
+    <EmbeddedResource Remove="angular\src\app\%40theme\directives\**" />
+    <EmbeddedResource Remove="angular\src\app\%40theme\models\**" />
+    <None Remove="angular\dist\**" />
+    <None Remove="angular\src\app\%2540theme\**" />
+    <None Remove="angular\src\app\%40theme\components\dialog\**" />
+    <None Remove="angular\src\app\%40theme\components\dynamic-form\**" />
+    <None Remove="angular\src\app\%40theme\components\smart-table-actions\**" />
+    <None Remove="angular\src\app\%40theme\components\smart-table\**" />
+    <None Remove="angular\src\app\%40theme\directives\**" />
+    <None Remove="angular\src\app\%40theme\models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200419141119_RolesList.cs" />
+    <Compile Remove="Migrations\20200419141119_RolesList.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="angular\src\app\pages\aps\aps-routing.module.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="angular\src\app\%40theme\components\header\header.component.html" />
+    <Content Include="angular\src\app\%40theme\components\photo-uploader\photo-uploader.component.html" />
+    <Content Include="angular\src\app\%40theme\components\theme-switcher\theme-switcher.component.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="angular\src\app\%40theme\components\footer\footer.component.scss" />
+    <None Include="angular\src\app\%40theme\components\header\header.component.scss" />
+    <None Include="angular\src\app\%40theme\components\photo-uploader\photo-uploader.component.scss" />
+    <None Include="angular\src\app\%40theme\components\search-input\search-input.component.scss" />
+    <None Include="angular\src\app\%40theme\components\switcher\switcher.component.scss" />
+    <None Include="angular\src\app\%40theme\components\theme-settings\theme-settings.component.scss" />
+    <None Include="angular\src\app\%40theme\components\theme-switcher\theme-switcher.component.scss" />
+    <None Include="angular\src\app\%40theme\components\theme-switcher\themes-switcher-list\theme-switcher-list.component.scss" />
+    <None Include="angular\src\app\%40theme\layouts\one-column\one-column.layout.scss" />
+    <None Include="angular\src\app\%40theme\layouts\sample\sample.layout.scss" />
+    <None Include="angular\src\app\%40theme\layouts\three-columns\three-columns.layout.scss" />
+    <None Include="angular\src\app\%40theme\layouts\two-columns\two-columns.layout.scss" />
+    <None Include="angular\src\app\%40theme\pipes\.gitkeep" />
+    <None Include="angular\src\app\%40theme\styles\bootstrap-rtl.scss" />
+    <None Include="angular\src\app\%40theme\styles\font-size.scss" />
+    <None Include="angular\src\app\%40theme\styles\pace.theme.scss" />
+    <None Include="angular\src\app\%40theme\styles\styles.scss" />
+    <None Include="angular\src\app\%40theme\styles\themes.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+<ItemGroup>
+  <ProjectReference Include="..\NEFBDAACommons\NEFBDAACommons.csproj" />
+</ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\footer\footer.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\header\header.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\index.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\layout-direction-switcher\layout-direction-switcher.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\photo-uploader\photo-uploader.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\search-input\search-input.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\switcher\switcher.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\theme-settings\theme-settings.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\theme-switcher\theme-switcher.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\theme-switcher\themes-switcher-list\themes-switcher-list.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\components\tiny-mce\tiny-mce.component.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\layouts\index.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\layouts\one-column\one-column.layout.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\layouts\sample\sample.layout.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\layouts\three-columns\three-columns.layout.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\layouts\two-columns\two-columns.layout.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\pipes\capitalize.pipe.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\pipes\eva-icons.pipe.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\pipes\index.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\pipes\number-with-commas.pipe.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\pipes\plural.pipe.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\pipes\round.pipe.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\pipes\timing.pipe.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\styles\theme.corporate.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\styles\theme.cosmic.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\styles\theme.default.ts" />
+    <TypeScriptCompile Include="angular\src\app\%40theme\theme.module.ts" />
+    <TypeScriptCompile Include="angular\src\app\pages\aps\aps-routing.module.ts" />
+  </ItemGroup>
+
+</Project>

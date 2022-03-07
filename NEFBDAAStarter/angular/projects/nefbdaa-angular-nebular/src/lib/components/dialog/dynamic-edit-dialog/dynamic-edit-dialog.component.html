@@ -1,0 +1,28 @@
+<nb-card [accent]="dialogContent.status || 'success'">
+  <nb-card-header *ngIf="dialogContent.formModel">
+    <ng-container *ngIf="dialogContent.header">
+      {{dialogContent.header}}
+    </ng-container>
+    <ng-container *ngIf="!dialogContent.header">
+      {{dialogContent.formModel.formConfig.formMode === 'ADD' ? 'Create' : 'Edit'}} {{dialogContent.formModel.formConfig.title}}
+    </ng-container>
+  </nb-card-header>
+  <nb-card-body>
+    <nb-alert *ngIf="dialogContent.message" >
+      {{dialogContent.message}}
+    </nb-alert>
+    <perfect-scrollbar class="scroll-container">
+      <ngx-dynamic-form #ngxForm [formModel]="dialogContent.formModel"></ngx-dynamic-form>
+    </perfect-scrollbar>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="float-right">
+      <button (click)="dismiss()" class=" mr-2" hero nbButton
+              status="basic">{{dialogContent.cancelButtonText || 'Cancel'}}</button>
+      <button (click)="ngxForm.updateModel();proceed()" *ngIf="isEditMode()"
+              [disabled]="ngxForm.form.invalid"
+              [status]="dialogContent.status || 'success'" hero
+              nbButton>{{dialogContent.okButtonText || 'Save'}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

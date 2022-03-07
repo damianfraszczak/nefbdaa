@@ -1,0 +1,35 @@
+<ng-container *ngFor="let formGroupModel of formModel.formConfig.formGroups ;">
+  <div *ngIf="isFormGroupVisible(formGroupModel)" [ngClass]="getFormGroupLayout(formGroupModel)" class="mt-2 mb-2">
+    <fieldset class="p-2">
+      <legend *ngIf="formGroupModel.name &&  formGroupModel.displayName && !formGroupModel.formGroupField">
+        {{formGroupModel.name}}
+
+      </legend>
+      <legend *ngIf="formGroupModel.formGroupField && isFieldVisible(formGroupModel.formGroupField)"
+              [ngClass]="getLayoutClassFromComponent(formGroupModel.formGroupField)">
+
+        <ngx-dynamic-field (valueChanged)="valueChanged.emit($event)"
+                           *ngIf="formGroupModel.formGroupField && isFieldVisible(formGroupModel.formGroupField)"
+                           [fieldDefinition]="formGroupModel.formGroupField" [formGroup]="formGroup"
+                           [formMode]="formModel.formConfig.formMode" [allValuesChanged]="allValuesChanged"
+                           [object]="formModel.object" [printLabels]="formModel.formConfig.printLabels"  [formConfig]="formModel.formConfig"
+        ></ngx-dynamic-field>
+      </legend>
+      <ng-container *ngIf="isFormGroupFieldsVisibleBasedOnGroupField(formGroupModel)">
+        <ng-container *ngFor="let fieldDefinition of formGroupModel.editFields | orderBy: 'order' ;">
+          <div *ngIf="isFieldVisible(fieldDefinition)"
+               [ngClass]="getLayoutClassFromComponent(fieldDefinition)">
+            <ngx-dynamic-field (valueChanged)="valueChanged.emit($event)" [fieldDefinition]="fieldDefinition"
+                               [formGroup]="formGroup" [formMode]="formModel.formConfig.formMode"
+                               [object]="formModel.object" [allValuesChanged]="allValuesChanged"
+                               [printLabels]="formModel.formConfig.printLabels"  [formConfig]="formModel.formConfig"
+            ></ngx-dynamic-field>
+          </div>
+        </ng-container>
+      </ng-container>
+
+    </fieldset>
+  </div>
+
+
+</ng-container>

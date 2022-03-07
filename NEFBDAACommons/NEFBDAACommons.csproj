@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+    <Version>3.1.80</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>DEFDev</Authors>
+    <Company>DEFDev</Company>
+    <Description>Zestaw bibliotek pomocniczych dla .NET Core 3.1</Description>
+    <AssemblyVersion>3.1.98.35</AssemblyVersion>
+    <FileVersion>3.1.98.35</FileVersion>
+    <PackageVersion>3.1.98.35</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AgileObjects.AgileMapper" Version="1.7.2" />
+    <PackageReference Include="FluentEmail.Core" Version="2.7.0" />
+    <PackageReference Include="FluentEmail.Razor" Version="2.7.0" />
+    <PackageReference Include="FluentEmail.SendGrid" Version="2.7.0" />
+    <PackageReference Include="FluentEmail.Smtp" Version="2.7.1" />
+    <PackageReference Include="FluentValidation" Version="8.6.0" />
+    <PackageReference Include="Hangfire" Version="1.7.8" />
+    <PackageReference Include="Innofactor.EfCoreJsonValueConverter" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Puma.Security.Rules" Version="2.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Scrutor" Version="3.1.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.0.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
+	
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.19" />
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="3.0.31" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Database\Attributes\" />
+    <Folder Include="Database\Converters\" />
+    <Folder Include="Security\Models\JwtToken\" />
+  </ItemGroup>
+
+</Project>

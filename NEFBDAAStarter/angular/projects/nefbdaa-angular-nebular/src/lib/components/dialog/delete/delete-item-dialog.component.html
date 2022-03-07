@@ -1,0 +1,21 @@
+<perfect-scrollbar>
+  <nb-card [accent]="dialogContent?.status || 'danger'">
+    <nb-card-header>{{dialogContent?.header || 'Confirmation required'}}</nb-card-header>
+    <nb-card-body>
+      <nb-alert>
+        Are you sure you want to delete item <b style="display: contents"
+                                                *ngIf="dialogContent.message">  {{dialogContent.message}}</b>?
+      </nb-alert>
+    </nb-card-body>
+    <nb-card-footer>
+      <nb-card-footer>
+        <div class="float-right">
+          <button (click)="dismiss()" class=" mr-2" hero nbButton
+                  status="basic">{{dialogContent?.cancelButtonText || 'Cancel'}}</button>
+          <button (click)="proceed()" [status]="dialogContent?.status || 'danger'" hero
+                  nbButton>{{dialogContent?.okButtonText || 'Delete'}}</button>
+        </div>
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+</perfect-scrollbar>

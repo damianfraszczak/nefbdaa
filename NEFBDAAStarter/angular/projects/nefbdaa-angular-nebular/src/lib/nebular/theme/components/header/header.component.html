@@ -1,0 +1,25 @@
+<div class="header-container">
+  <div class="logo-container">
+    <a (click)="navigateToPreviousView()" class="navigation back mr-2" href="javascript:void(0);"><i
+      class="nb-arrow-left"></i></a>
+    <a (click)="toggleSidebar()" class="sidebar-toggle" href="#">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </a>
+    <div (click)="navigateHome()" class="logo">{{title}}-<span>admin</span></div>
+  </div>
+
+</div>
+
+<div class="header-container">
+  <ng-content actions></ng-content>
+  <nb-actions size="medium">
+    <nb-action *ngIf="showChangeThemeAction" class="user-action">
+      <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
+        <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
+      </nb-select>
+    </nb-action>
+    <nb-action *ngIf="showUserMenuAction" class="user-action">
+      <nb-user [nbContextMenu]="userMenu" [name]="user?.firstName + ' ' + user?.lastName"></nb-user>
+    </nb-action>
+  </nb-actions>
+</div>

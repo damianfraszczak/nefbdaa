@@ -1,0 +1,36 @@
+<nb-tabset class="tabs-form" (changeTab)="tabChanged()">
+  <nb-tab [tabTitle]="'My account'" active="true" *ngIf="formModel" >
+    <ngx-dynamic-form #ngxForm [formModel]="formModel"></ngx-dynamic-form>
+    <nb-card>
+      <nb-card-footer>
+        <div class="d-inline-flex">
+          <button (click)="onCancel()" class="mr-2" [status]="'basic'" hero nbButton>Cancel</button>
+
+        </div>
+        <div class="d-inline-flex float-right">
+          <button class="mr-2" (click)="ngxForm.updateModel();save(true)" [disabled]="ngxForm.form.invalid"
+                  [status]="'primary'" hero
+                  nbButton
+          >Save and close
+          </button>
+          <button class="mr-2 " (click)="ngxForm.updateModel();save(false)" [disabled]="ngxForm.form.invalid"
+                  [status]="'success'" hero
+                  nbButton
+          >Save and and continue
+          </button>
+        </div>
+
+
+      </nb-card-footer>
+    </nb-card>
+  </nb-tab>
+  <nb-tab tabTitle="Documents" *ngIf="formModel">
+    <ngx-documents [ownerGuid]="formModel.object.guid" [title]="''">
+
+    </ngx-documents>
+  </nb-tab>
+  <nb-tab tabTitle="Notes" *ngIf="formModel">
+    <ngx-notes [ownerGuid]="formModel.object.guid" [title]="''">
+    </ngx-notes>
+  </nb-tab>
+</nb-tabset>

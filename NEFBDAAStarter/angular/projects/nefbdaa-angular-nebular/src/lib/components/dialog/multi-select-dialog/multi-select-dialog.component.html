@@ -1,0 +1,25 @@
+<nb-card [accent]="dialogContent.status || 'primary'">
+  <nb-card-header>{{dialogContent.header}}</nb-card-header>
+  <nb-card-body>
+    <nb-card-body>
+      <nb-alert *ngIf="dialogContent.message" >
+        {{dialogContent.message}}
+      </nb-alert>
+      <ng-select
+        [(ngModel)]="dialogContent.selected"
+        [multiple]="dialogContent.multiple"
+      >
+        <ng-option *ngFor="let item of dialogContent.items"
+                   [value]="item.optionId">{{item.optionText}}</ng-option>
+      </ng-select>
+    </nb-card-body>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="float-right">
+      <button (click)="dismiss()" class=" mr-2" hero nbButton
+              status="basic">{{dialogContent.cancelButtonText || 'Cancel'}}</button>
+      <button (click)="proceed()" [status]="dialogContent.status || 'success'" hero
+              nbButton [disabled]="dialogContent.selected">{{dialogContent.okButtonText || 'Confirm'}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

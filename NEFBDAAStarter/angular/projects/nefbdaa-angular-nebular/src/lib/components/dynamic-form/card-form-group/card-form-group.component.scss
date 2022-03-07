@@ -1,0 +1,16 @@
+.block-form {
+  display: inline-grid;
+}
+
+::ng-deep {
+  .group-header {
+    display: inline-block;
+
+    .form-group {
+      margin-bottom: 0 !important;
+    }
+
+  }
+}
+
+

@@ -1,0 +1,16 @@
+<nb-card [accent]="dialogContent?.status || 'primary'">
+  <nb-card-header>{{dialogContent?.header || 'Confirmation required'}}</nb-card-header>
+  <nb-card-body>
+    <nb-alert *ngIf="dialogContent?.message">
+      {{dialogContent?.message}}
+    </nb-alert>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="float-right">
+      <button (click)="dismiss()" class=" mr-2" hero nbButton
+              status="basic">{{dialogContent?.cancelButtonText || 'Cancel'}}</button>
+      <button (click)="proceed()" [status]="dialogContent?.status || 'success'" hero
+              nbButton>{{dialogContent?.okButtonText || 'Confirm'}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

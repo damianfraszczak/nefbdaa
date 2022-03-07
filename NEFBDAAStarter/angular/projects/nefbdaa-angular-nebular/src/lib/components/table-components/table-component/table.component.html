@@ -1,0 +1,15 @@
+<nb-card>
+  <nb-card-header>
+    {{title}}
+  </nb-card-header>
+  <nb-card-body>
+    <ng-content select="above-table"></ng-content>
+    <ngx-smart-table #table
+                     [dataSource]="dataSource"
+                     [settings]="tableSettings"
+                     (custom)="custom.emit($event)"
+    >
+    </ngx-smart-table>
+    <ng-content select="below-table"></ng-content>
+  </nb-card-body>
+</nb-card>

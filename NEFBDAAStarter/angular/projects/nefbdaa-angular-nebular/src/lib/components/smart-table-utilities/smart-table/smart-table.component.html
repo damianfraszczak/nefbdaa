@@ -1,0 +1,19 @@
+<div *ngIf="tableVisible">
+
+  <ng-container>
+    <ngx-smart-table-actions (createNewClick)="showCreationForm()" *ngIf="showActionsToolbar" [custom]="custom"
+                             [globalSelectedRows]="globalSelectedRows" [selectedRows]="selectedRows" [table]="table"
+    ></ngx-smart-table-actions>
+    <ng2-smart-table #table
+                     [settings]="allSettings"
+                     [source]="dataSource"
+                     (create)="showCreationForm()"
+                     (edit)="showUpdateForm($event.data)"
+                     (delete)="showDeleteForm($event.data)"
+                     (custom)="custom.emit($event)"
+                     (editConfirm)="validateRow($event)"
+                     (userRowSelect)="userRowSelect($event.selected)"
+    >
+    </ng2-smart-table>
+  </ng-container>
+</div>

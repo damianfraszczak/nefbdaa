@@ -1,0 +1,19 @@
+<div class="file">
+  <div *ngIf="!document" class="drop-zone"
+       ngfDrop selectable="1" multiple="1"
+       [(files)]="files"
+       (filesChange)="uploadFiles()"
+       [nbSpinner]="uploadingFiles"
+
+  >
+    Drag or choose file to upload
+  </div>
+  <div class="actions" *ngIf="document">
+
+  <a class="link" [href]="document.filePath">{{document.name}}</a>
+    <a class="delete-link" href="javascript: void(0)"  (click)="clearSelection()"><i class="fas fa-times"></i></a>
+  </div>
+
+
+</div>
+

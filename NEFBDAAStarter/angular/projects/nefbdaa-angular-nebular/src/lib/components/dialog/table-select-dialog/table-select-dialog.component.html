@@ -1,0 +1,27 @@
+<nb-card [accent]="dialogContent.status || 'primary'">
+  <nb-card-header>{{dialogContent.header || 'Select'}}</nb-card-header>
+  <nb-card-body>
+    <nb-card-body *ngIf="tableSettings && dataSource">
+      <nb-alert *ngIf="dialogContent.message"
+               >{{dialogContent.message}}</nb-alert>
+      <perfect-scrollbar class="scroll-container">
+        <ng2-smart-table #table (delete)="deleteItem($event.data)"
+                         [settings]="tableSettings"
+                         [source]="dataSource"
+                         class="table-responsive"
+        >
+        </ng2-smart-table>
+
+      </perfect-scrollbar>
+
+    </nb-card-body>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="float-right">
+      <button (click)="dismiss()" class=" mr-2" hero nbButton
+              status="basic">{{dialogContent.cancelButtonText || 'Cancel'}}</button>
+      <button (click)="proceed()" [status]="dialogContent.status || 'success'" hero
+              nbButton>{{dialogContent.okButtonText || 'Confirm'}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

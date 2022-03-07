@@ -1,0 +1,25 @@
+.file {
+  display: block;
+}
+
+.drop-zone {
+  border: dotted 3px lightgray;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.actions {
+  display: inline-flex;
+
+}
+
+.delete-link{
+  font-size: 1.2rem;
+  color: red !important;
+  margin-left: 1rem;
+}
+.drop-zone:hover {
+  cursor: pointer;
+}

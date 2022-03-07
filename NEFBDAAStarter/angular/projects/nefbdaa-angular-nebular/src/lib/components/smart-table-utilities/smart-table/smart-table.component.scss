@@ -1,0 +1,112 @@
+
+h1.no-data {
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1.no-data > span > .fa-ban {
+  font-size: 2em;
+}
+
+:host ::ng-deep ng2-st-tbody-edit-delete {
+  display: inline-block !important;
+  text-align: center;
+  height: 28px !important;
+  vertical-align: middle;
+}
+
+:host ::ng-deep ng2-st-tbody-custom {
+  // display: inline-block !important;
+  text-align: center;
+  vertical-align: middle;
+  height: 28px !important;
+}
+
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom:hover {
+  color: #5dcfe3;
+}
+
+:host ::ng-deep a.ng2-smart-action {
+  height: 28px !important;
+  width: 28px !important;
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+
+:host ::ng-deep a.ng2-smart-action-edit-save {
+  margin: auto;
+}
+
+:host ::ng-deep a.ng2-smart-action-edit-cancel {
+  margin: auto;
+}
+
+.nb-trash:hover {
+  color: #ff6b83;
+}
+
+:host ::ng-deep .ng2-smart-actions {
+  text-align: center;
+
+}
+
+/*first is select all*/
+:host ::ng-deep .ng2-smart-actions:last-of-type {
+  width: 10%;
+}
+
+:host ::ng-deep .ng2-smart-action-multiple-select input[type=checkbox] {
+  display: inline;
+  width: auto;
+}
+
+:host ::ng-deep .ng2-smart-action-multiple-select {
+  width: 1rem;
+}
+
+:host ::ng-deep ng2-smart-table th[ng2-st-checkbox-select-all] {
+  width: 1rem;
+}
+
+:host ::ng-deep ng2-smart-table .ng2-smart-actions a.ng2-smart-action:not(:last-child) {
+  border-right: 0 !important;
+}
+
+:host ::ng-deep ng2-smart-table table tr.ng2-smart-titles th {
+  padding: 0.875rem 1.25rem !important;
+
+}
+
+:host ::ng-deep .ng2-smart-pagination-per-page {
+  text-align: right;
+}
+
+:host ::ng-deep {
+  ng2-smart-table {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  //.ng2-smart-th{
+  //  min-width: 100px;
+  //}
+
+  ng2-smart-table-title {
+    font-weight: bold !important;
+    a {
+      font-weight: bold !important;
+    }
+  }
+  .fas {
+    font-size: 1.1rem;
+  }
+  table-cell-edit-mode{
+    min-width: 125px;
+    ng-select{
+      min-width: 200px;
+    }
+  }
+}
+

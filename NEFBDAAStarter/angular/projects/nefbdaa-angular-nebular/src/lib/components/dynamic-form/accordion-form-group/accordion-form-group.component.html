@@ -1,0 +1,42 @@
+<nb-accordion [class.col-md-12]="isLayout(formModel.formConfig.formLayout,'one')"
+              [class.col-md-6]="isLayout(formModel.formConfig.formLayout,'two')"
+              [class.col-md-4]="isLayout(formModel.formConfig.formLayout,'three')"
+              [class.col-md-3]="isLayout(formModel.formConfig.formLayout,'four')"
+              [class.col-md-2]="isLayout(formModel.formConfig.formLayout,'six')"
+              [class.block-form]="!isLayout(formModel.formConfig.formLayout,'one')" class="m-1"
+>
+  <ng-container *ngFor="let formGroupModel of formModel.formConfig.formGroups;">
+    {{formGroupModel.name}}
+    <ng-container *ngIf="isFormGroupVisible(formGroupModel)">
+      <nb-accordion-item>
+        <nb-accordion-item-header *ngIf="formGroupModel.name && formGroupModel.displayName">
+          {{formGroupModel.name}}
+          <ngx-dynamic-field [fieldDefinition]="formGroupModel.formGroupField" [formGroup]="formGroup"
+                             (valueChanged)="valueChanged.emit($event)" [formMode]="formModel.formConfig.formMode"
+                             [object]="formModel.object" [allValuesChanged]="allValuesChanged"
+                             [formConfig]="formModel.formConfig"                        [printLabels]="formModel.formConfig.printLabels" *ngIf="formGroupModel.formGroupField"
+        ></ngx-dynamic-field >
+        </nb-accordion-item-header>
+        <nb-accordion-item-body *ngIf="isFormGroupFieldsVisibleBasedOnGroupField(formGroupModel)">
+          <ng-container *ngFor="let fieldDefinition of formGroupModel.editFields | orderBy: 'order' ;">
+            <div *ngIf="isFieldVisible(fieldDefinition)"
+                 [class.col-md-12]="isLayout(formGroupModel.formLayout, 'one')"
+                 [class.col-md-6]="isLayout(formGroupModel.formLayout, 'two')"
+                 [class.col-md-4]="isLayout(formGroupModel.formLayout, 'three')"
+                 [class.col-md-3]="isLayout(formGroupModel.formLayout, 'four')"
+                 [class.col-md-2]="isLayout(formGroupModel.formLayout, 'six')"
+                 [class.block-form]="!isLayout(formGroupModel.formLayout, 'one')"
+            >
+              <ngx-dynamic-field [fieldDefinition]="fieldDefinition" [formGroup]="formGroup"
+                                 [formMode]="formModel.formConfig.formMode"
+                                 (valueChanged)="valueChanged.emit($event)"
+                                 [object]="formModel.object" [allValuesChanged]="allValuesChanged"
+                                 [printLabels]="formModel.formConfig.printLabels" [formConfig]="formModel.formConfig"
+              ></ngx-dynamic-field>
+            </div>
+          </ng-container>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </ng-container>
+  </ng-container>
+</nb-accordion>

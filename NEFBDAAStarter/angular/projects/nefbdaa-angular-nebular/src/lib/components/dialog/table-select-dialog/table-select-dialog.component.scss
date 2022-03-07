@@ -1,0 +1,22 @@
+
+nb-card {
+  min-width: 50vw;
+  max-width: 90vw;
+  max-height: 90vh;
+  min-height: 30vh;
+
+}
+
+:host ::ng-deep ng2-smart-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  .ng2-smart-actions{
+    display: none;
+  }
+}
+
+button {
+  text-transform: uppercase;
+}

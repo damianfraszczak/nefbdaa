@@ -1,0 +1,30 @@
+<!--<nb-tabset>-->
+<!--  <nb-tab [tabTitle]="detailsTabTitle"  active="true"  *ngIf="formModel">-->
+<!--    <ngx-dynamic-form #ngxForm [formModel]="formModel"></ngx-dynamic-form>-->
+<!--    <nb-card>-->
+<!--      <nb-card-footer>-->
+<!--        <div class="d-inline-block">-->
+<!--          <button (click)="onCancel()" class="mr-2" [status]="'basic'" class="mr-2" hero nbButton>Cancel</button>-->
+<!--          <ng-content select="[left-buttons]" ></ng-content>-->
+<!--        </div>-->
+<!--        <div class="d-inline-block text-right">-->
+<!--          <ng-content select="[right-buttons]" ></ng-content>-->
+<!--          <button (click)="ngxForm.updateModel();save(true)" [disabled]="ngxForm.form.invalid"-->
+<!--                  [status]="'success'" hero-->
+<!--                  nbButton-->
+<!--          >Save and close-->
+<!--          </button>-->
+<!--          <button (click)="ngxForm.updateModel();save(false)" [disabled]="ngxForm.form.invalid"-->
+<!--                  [status]="'success'" hero-->
+<!--                  nbButton-->
+<!--          >Save and and continue editing-->
+<!--          </button>-->
+
+<!--        </div>-->
+
+
+<!--      </nb-card-footer>-->
+<!--    </nb-card>-->
+<!--  </nb-tab>-->
+<!--  <ng-content select="[tabs]"></ng-content>-->
+<!--</nb-tabset>-->
