@@ -1,7 +1,12 @@
 # NEFBDAA - .NET Environment for Building Dynamic Angular Applications
 
 NEFBDAA is a high-level C#, .NET Core, and Angular web-based framework which encourages rapid development and clean, pragmatic design. It takes care of much of the difficulties that come with web development, therefore, researchers need only focus on developing scientific work and modifying their web-based applications with just a few lines of code change. 
-
+## Technology stack
+C#, .NET Core, Angular, TypeScript, JavaScript
+## Dependencies
+- Backend:
+[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/), [Hangfire](https://www.hangfire.io/), [QueryBuilder](https://github.com/tghamm/dynamic-linq-query-builder)
+- Frontend:
 ## Features
 - encourages rapid development and clean, pragmatic design for both backend and frontend layers.
 - Services configuration via predefined configuration model including: Swagger, entity tracing or security.
