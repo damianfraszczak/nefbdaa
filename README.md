@@ -314,5 +314,13 @@ public class ApiGuideBookingController :
 ```
 and you will get the following result:
 ![image](https://user-images.githubusercontent.com/19403500/157186610-eda40ece-3a58-4362-bed0-2800e018bc73.png)
+## Sample application views built on the NEFBDAA
+### Covid-19 monitoring application
+![help](https://user-images.githubusercontent.com/19403500/157193155-78070c7b-5a3e-4e3a-a660-30dbeacc4e4f.png)
+### Sensor data management application
+#### User details form
+![logged user details](https://user-images.githubusercontent.com/19403500/157193337-9c1edcdc-bc16-4ac8-a5de-ac92b90d7ae2.png)
+#### Bulk edit
+
 
 
