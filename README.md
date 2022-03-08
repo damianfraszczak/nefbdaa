@@ -1,12 +1,36 @@
 # NEFBDAA - .NET Environment for Building Dynamic Angular Applications
 
 NEFBDAA is a high-level C#, .NET Core, and Angular web-based framework which encourages rapid development and clean, pragmatic design. It takes care of much of the difficulties that come with web development, therefore, researchers need only focus on developing scientific work and modifying their web-based applications with just a few lines of code change. 
+## How to start
+Application comes with ready to use app starter template that should be used as a staring point to use the framework.
+### Backend
+To run application backend go to the starter application and run it in your IDE or via a command line
+```
+dotnet run --project NEFBDAAStarter
+```
+and backend services will be available on http://localhost:8090
+### Frontend
+To run application backend go to the starter application and run it in your IDE or via a command line
+```
+ng serve --port 4222 --no-progress --proxy-config proxy.config.json
+```
+then frontend layer will be available on http://localhost:4222. You can observe that there is additional param pass to the command - `proxy-config`. It is used to configure proxing of the http requests from frontend to backend. In dev environment it is needed as both layers are working on different ports.
 ## Technology stack
 C#, .NET Core, Angular, TypeScript, JavaScript
 ## Dependencies
-- Backend:
-[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/), [Hangfire](https://www.hangfire.io/), [QueryBuilder](https://github.com/tghamm/dynamic-linq-query-builder)
-- Frontend:
+- Backend (main dependencies):
+  - [Entity Framework Core](https://github.com/dotnet/efcore)
+  - [Hangfire](https://www.hangfire.io/)
+  - [QueryBuilder](https://github.com/tghamm/dynamic-linq-query-builder)
+  - [AgileMapper](https://github.com/agileobjects/AgileMapper)
+  - [FluentEmail](https://github.com/lukencode/FluentEmail)
+  - [Swagger](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
+  - ...
+- Frontend (main dependencies):
+  - [Nebular](https://github.com/akveo/nebular) 
+  - [Smart table](https://github.com/akveo/ng2-smart-table)
+  - [CKEditor](https://github.com/ckeditor/ckeditor5-angular)
+  - 
 ## Features
 - encourages rapid development and clean, pragmatic design for both backend and frontend layers.
 - Services configuration via predefined configuration model including: Swagger, entity tracing or security.
@@ -58,7 +82,7 @@ C#, .NET Core, Angular, TypeScript, JavaScript
   - Documents management
   - Notes management
   - Files management
-
+- ...
 ## Architecture
 The proposed environment architecture is presented in the below figure. It consists of the three main components: 
 ![image](https://user-images.githubusercontent.com/19403500/157183726-23b3a9f6-c58b-4854-8eec-d79a3fb5e9c9.png)
@@ -66,6 +90,84 @@ The proposed environment architecture is presented in the below figure. It consi
 - .NET Core module – it provides a set of standard models, utils, and functionalities that supports building the backend layer of web applications. It covers database access and management layers, asynchronous tasks processing, enhanced CRUD layer implementation, including dynamic data filtering, ordering, aggregation, pagination, and security configuration. Besides these, it also provides a set of custom data attributes to improve the dependency on the injection configuration process and build the JSON-based model configuration to be consumed by frontend services to generate dynamic-based forms and tables for domain objects. The introduced services are easily configurable via a configuration model, enabling or disabling them if necessary.
 - The angular core module provides a set of standard models, utils, and functionalities that support building the secure, responsive, and maintainable SPA. Besides that, it also provides the components responsible for consuming JSON-based model configuration to display forms and tables.
 - .NET Core Angular starter application is a sample starter app that shows how to start with the default settings to work on the project. 
+
+### Form model configuration
+``` typescript
+export interface FormGroupModel {
+  name?: string;
+  displayName?: boolean;
+  editFields?: Array<EditFieldDefinitionModel>;
+  fieldsetClass?: string;
+  formGroupField?: EditFieldDefinitionModel;
+  formLayout?: FormLayout;
+  visibilityExpression?: string;
+  visibilityExpressionParams?: Array<string>;
+  order?: number;
+  formGroups?: Array<FormGroupModel>;
+  visibleOnCreateForm?: boolean;
+  visibleOnUpdateForm?: boolean;
+}
+
+export interface FormValidatorModel {
+  validatorType?: FormValidatorType;
+  min?: number;
+  max?: number;
+  regex?: string;
+
+}
+
+export interface FormConfig {
+  modelType?:string;
+  title?: string;
+  formLayout?: FormLayout;
+  formMode?: FormMode;
+  printLabels?: boolean;
+  validators?: { [key: string]: Array<FormValidatorModel> };
+  formGroups?: Array<FormGroupModel>;
+  formGroupLayoutComponent?: FormGroupLayoutComponent;
+}
+
+export interface FormModel<T> {
+  formConfig?: FormConfig;
+  object?: T;
+}
+
+export interface EditFieldDefinitionModel {
+  parameterName?: string;
+  editable?: boolean;
+  displayOnUpdateForm?: boolean;
+  editableOnCreateForm?: boolean;
+  editableOnEditForm?: boolean;
+  validators?: Array<FormValidatorModel>;
+  options?: Array<SelectFieldOptionModel>;
+  placeholder?: string;
+  tableTitle?: string;
+  helpText?: string;
+  modelType?: string;
+  displayOnCreationForm?: boolean;
+  display?: boolean;
+  filterable?: boolean;
+  order?: number;
+  filterOrder?: number;
+  exportOrder?: number;
+  inputType?: InputType;
+  queryType?: string;
+  groupName?: string;
+  visibilityExpressionParams?: Array<string>;
+  visibilityExpression?: string;
+  formLayout?: FormLayout;
+  computedOn?: ComputedConfig;
+  optionsFilteredOn?: FilteredOptionsConfig;
+  addInlineConfig?: AddInlineConfig;
+  extraClassList?: string[];
+  max?: string;
+  min?: string;
+}
+```
+- `FormModel` – containing the form configuration and edited object. This object is returned from the backend API service and consumed by the frontend to provide a dynamic UI form.
+- `FormConfig` – contains the configuration for the whole form, including its: title, general form layout, list of custom validators, defined form groups, or the form display mode.  
+- `FormGroupModel` – is a representation of form groups, i.e., a list of fields representing as one whole, rendered together. It consists of such configuration options as title, name, layout, set of visibility conditions to display/hide components based on computed properties of an edited object, etc.
+- `EditFieldDefinitionModel` – is a representation of the object fields displayed in a form. It has a lot of configuration options. The most important are: options – for select like fields, it is a list of options to display what can be configured statically or computed automatically based on the provided conditions and data models; inputType – the type of UI component responsible for showing that field; computedOn – it allows to render fields that do not exist in a model, but they are read-only fields computed on some model properties; addInlineConfig – if the field represents a related model, it consists the configuration to add a new object on current form. There are also multiple table-specific properties such as filterable, queryType, tableTitle etc.
 
 ## Sample usage
 1. Firslty create your domain model that is just an Entity Framework entity.
