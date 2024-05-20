@@ -2,6 +2,11 @@
 
 NEFBDAA is a high-level C#, .NET Core, and Angular web-based framework which encourages rapid development and clean, pragmatic design. It takes care of much of the difficulties that come with web development, therefore, researchers need only focus on developing scientific work and modifying their web-based applications with just a few lines of code change. 
 
+If you use _NEFBDAA_ as support to your research consider citing:
+
+`D. Frąszczak: NEFBDAA — .NET Environment for Building Dynamic Angular Applications
+. SoftwareX. 2022.` [DOI](https://doi.org/10.1016/j.softx.2022.101163)
+
 ## Features
 - encourages rapid development and clean, pragmatic design for both backend and frontend layers.
 - Services configuration via predefined configuration model including: Swagger, entity tracing or security.
