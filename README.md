@@ -7,6 +7,8 @@ If you use _NEFBDAA_ as support to your research consider citing:
 `D. Frąszczak: NEFBDAA — .NET Environment for Building Dynamic Angular Applications
 . SoftwareX. 2022.` [DOI](https://doi.org/10.1016/j.softx.2022.101163)
 
+[RG Paper](https://www.researchgate.net/publication/362486081_NEFBDAA_-_NET_Environment_for_Building_Dynamic_Angular_Applications)
+
 ## Features
 - encourages rapid development and clean, pragmatic design for both backend and frontend layers.
 - Services configuration via predefined configuration model including: Swagger, entity tracing or security.
